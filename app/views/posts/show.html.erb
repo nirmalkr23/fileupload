@@ -1,0 +1,20 @@
+<p style="color: green"><%= notice %></p>
+ <div class="row"></div>
+<div class="col-6" style="margin: auto; margin-top: 30px; margin-bottom: 30px;">
+<%= render @post %>
+<br>
+<% if user_signed_in? %>
+  <% if current_user.id == @post.user.id%>
+
+    <div>
+      <%= link_to "Edit this post", edit_post_path(@post),class: "btn btn-primary col-6"  %> 
+      <%= link_to "Back to posts", posts_path ,class: "btn btn-back col-6" %>
+
+      <%= button_to "Destroy this post", @post, method: :delete,class: "btn btn-danger col-6"  %>
+    </div>
+
+
+  <% end %>  
+<% end %>  
+    </div>
+</div>

@@ -1,0 +1,21 @@
+<div id="card-container" class="vh-90 d-flex flex-column justify-content-center align-items-center bg-light p-5">
+        <% @following_posts.each_slice(4) do |posts_slice| %>
+            <div class="row ">
+                <% posts_slice.each do |post| %>
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4 "> <!-- Adjusted column classes -->
+                        <div class="card h-100 border border-primary">
+                            <%= post.user.first_name %> <%= post.user.last_name %>
+                            <video controls class="card-img-top" width="100%">
+                                <source src="<%= url_for(post.video) %>" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="card-body">
+                                
+                                <%= link_to "View Post", post_path(post), class: "btn btn-primary" %>
+                            </div>
+                        </div>
+                    </div>
+                <% end %>
+            </div>
+        <% end %>
+</div>

@@ -1,0 +1,17 @@
+
+<% if user_signed_in? %>
+  <div id="<%= dom_id post %>" class="col-md-4 mb-4">
+                <video width="300" controls>
+                    <source src="<%= url_for(post.video) %>" type="<%= post.video.content_type %>">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="text-center">
+                    <h5 class=""><%= post.title %></h5>
+                    <p class=""><%= post.description %></p>
+                    <%= link_to "View Post", post_path(post), class: "btn btn-primary" %>
+                </div>
+  </div>
+<% else %>
+      <p class="text-muted">Please log in to view posts.</p>
+<% end %>
+      

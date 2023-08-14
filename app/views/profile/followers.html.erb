@@ -1,0 +1,6 @@
+<h2>Followers of <%= @user.full_name %></h2>
+<ul>
+  <% @followers.each do |follower| %>
+    <li><%= follower.full_name %></li>
+  <% end %>
+</ul>

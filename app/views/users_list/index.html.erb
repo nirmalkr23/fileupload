@@ -1,0 +1,22 @@
+<h1>All Users</h1>
+
+<ul>
+  <% @users.each do |user| %>
+    <li>
+      <%= user.email %>
+      <% unless current_user == user %>
+        <% unless current_user.pending_friends.exists?(user.id) %>
+          <%= button_to "Send Friend Request", friendships_path(friend_id: user.id), method: :post %>
+        <% else %>
+          <p>Friend request sent</p>
+        <% end %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+By making these changes, you'll ensure that the pending_friends association is used to check for pending friend requests, and the error you encountered should be resolved. Make sure to adjust the association names and methods according to your specific implementation if they differ from the example provided here.
+
+
+
+
+

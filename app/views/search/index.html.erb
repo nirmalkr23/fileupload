@@ -1,0 +1,11 @@
+<h1>Search Results</h1>
+
+<% if @search_results.any? %>
+  <ul>
+    <% @search_results.each do |user| %>
+      <li><%= link_to user.first_name, profile_show_path(user) %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No results found.</p>
+<% end %>

@@ -1,0 +1,40 @@
+.post-container {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+}
+
+.post-header {
+    background-color: #333;
+    color: white;
+    padding: 8px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.post-content {
+    padding: 10px;
+}
+
+.video-container {
+    width: 100%;
+    max-height: 600px;
+    overflow: hidden;
+}
+
+.divider:after,
+.divider:before {
+content: "";
+flex: 1;
+height: 1px;
+background: #eee;
+}
+.h-custom {
+height: calc(100% - 73px);
+}
+@media (max-width: 450px) {
+.h-custom {
+height: 100%;
+}
+}

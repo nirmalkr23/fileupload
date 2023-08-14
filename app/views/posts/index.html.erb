@@ -1,0 +1,14 @@
+<%= stylesheet_link_tag("post") %>
+<p style="color: green"><%= notice %></p>
+
+<div id="posts" class="text-center">
+  <% @posts.each do |post| %>
+    <%= render partial: 'posts/post', locals: { post: post } %>
+    <p>
+      <%= link_to "VIEW", post %>
+      <%= link_to "", post ,class:"post-link"%>
+    </p>
+  <% end %>
+</div>
+
+

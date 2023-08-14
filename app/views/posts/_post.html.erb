@@ -1,0 +1,116 @@
+<!--<div class="d-flex justify-content-center">
+  <div id="<%= dom_id post %>" class="post-container">
+    <div class="post-header">
+      <p>
+        <strong>Title:</strong>
+        <%= post.title %>
+      </p>
+    </div>
+
+    <div class="post-content">
+      <p>
+        <strong>Description:</strong>
+        <%= post.description %>
+      </p>
+
+      <% if post.video.attached? %>
+        <div class="video-container">
+          <%= video_tag(url_for(post.video), controls: true, style: "width: 60%; max-height: 600px; border: 2px solid #ccc; border-radius: 5px; margin: 0 auto;") %>
+        </div>
+      <% else %>
+        <p>No video available.</p>
+      <% end %>
+      <% like = current_user.likes.find_by(post: @post)%>
+        <% if like.nil? %>
+        <form action="/likes" method="post">
+          <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+          <input type="hidden" name="like[post_id]" value="<%= @post.id %>">
+          <input type="submit" value="Like">
+        </form>
+        <% else %>  
+          <form action="<%= like_path(like) %>" method="post">
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <input type="hidden" name="_method" value="DELETE">
+            <input type="hidden" name="like[post_id]" value="<%= @post.id %>">
+            <input type="submit" value="Unlike">
+          </form>
+        <% end %>
+
+
+        <%= @post.likes.count %> Likes
+        <p>Views: <%= @post.view_count %></p>
+        <% if post.comments.any? %>
+              <ul class="list-group list-group-flush">
+                  <% post.comments.each do |comment| %>
+                      <li class="list-group-item"><%= comment.text %></li>
+                  <% end %>
+              </ul>
+        <% end %>
+<%= render 'comments/form' ,comment: @comments%>
+    </div>
+  </div>
+</div>-->
+<div class="container mt-5">
+      <div class="row" id="<%= dom_id post %>">
+        <div class="col-12">
+          <div class="card">
+            <%= link_to "#{post.user.first_name}", profile_show_path(id: post.user_id), class: "btn btn-info mb-2" %>
+
+              <div class="video-container" style="overflow: hidden">
+              
+                <video controls width="100%">
+                  <source
+                    src="<%= url_for(post.video) %>" type="<%= post.video.content_type %>"
+                    type="video/mp4"
+                  />
+                  Your browser does not support the video tag.
+                </video>
+            </div>
+
+            <!-- Post content -->
+            <div class="card-body">
+              <h5 class="card-title"><%= post.title %></h5>
+              
+              <p class="card-text mt-3">
+                <%= post.description %>
+              </p>
+              <hr />
+              <%= @post.likes.count %> Likes
+        <p>Views: <%= @post.view_count %></p>
+              <% like = current_user.likes.find_by(post: @post)%>
+        <% if like.nil? %>
+        <form action="/likes" method="post">
+          <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+          <input type="hidden" name="like[post_id]" value="<%= @post.id %>">
+          <input class="btn btn-outline-primary btn-sm" type="submit" value="Like">
+        </form>
+        <% else %>  
+          <form action="<%= like_path(like) %>" method="post">
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <input type="hidden" name="_method" value="DELETE">
+            <input type="hidden" name="like[post_id]" value="<%= @post.id %>">
+            <input class="btn btn-outline-danger btn-sm" type="submit" value="Unlike">
+            <button class="btn btn-outline-primary btn-sm">
+                <span class="badge bg-primary"><%= @post.likes.count %></span>Like 
+              </button>
+              <button class="btn btn-outline-info btn-sm">Views: <%= @post.view_count %></button>
+          </form>
+        <% end %>
+        
+            </div>
+            <%= render 'comments/form' ,comment: @comments%>
+            <!-- Commenting section -->
+            <% if post.comments.any? %>
+              <ul class="list-group list-group-flush">
+                  <% post.comments.each do |comment| %>
+                  <li class="text-start list-group-item">
+                <strong><%= comment.user.first_name%> <%= comment.user.last_name%>:</strong> <%= comment.text %>
+              </li>
+                  <% end %>
+              </ul>
+        <% end %>
+
+          </div>
+        </div>
+      </div>
+    </div>
