@@ -15,7 +15,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def create
   #   super
   # end
-
+  def after_update_path_for(resource)
+    # Replace 'profile_path' with the actual path/helper name for the profile page
+    redirect_to_profile_show_path
+  end
   # GET /resource/edit
   # def edit
   #   super

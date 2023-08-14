@@ -17,6 +17,16 @@
   </div>
 
   <div class="field">
+    <%= f.label :bio %>
+    <%= f.text_area :bio,  autofocus: true,autocomplete: "first_name" ,class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :profile_img, "Profile Image" %>
+    <%= f.file_field :profile_img , autofocus: true,autocomplete: "first_name" ,class: "form-control"%>
+  </div>
+
+  <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" ,class: "form-control" %>
   </div>
