@@ -14,8 +14,8 @@
         <div class="col-md-8">
           <div class="d-flex justify-content-between">
             <div><strong><%= user.posts.count%></strong> posts</div>
-            <div><strong><%= user.followers.count%></strong> followers</div>
-            <div><strong><%= user.followees.count%> </strong> following</div>
+            <div><strong><%= user.followers.count %> <%=link_to  "followers",user_followers_path(user) %> </strong></div>
+            <div><strong><%= user.followees.count %> <%=link_to  "following",user_following_path(user) %> </strong></div>
           </div>
           <div class="mt-3">
             <p>

@@ -29,12 +29,12 @@
 
           <li class="nav-item">
             <!-- Add the following line to link to the list of users -->
-            <%#= link_to "All Users", users_list_index_path %>
+            <%#= link_to "follower", user_followers_path(id: current_user.id),class:"nav-link" %>
           </li>
 
           <li class="nav-item">
             <!-- Add the following line to link to the pending friend list-->
-            <%#= link_to "Friend Request", pendingfriendrequest_index_path %>
+            <%#= link_to "following", user_following_path(id: current_user.id),class:"nav-link" %>
           </li>
 
         <% else %>

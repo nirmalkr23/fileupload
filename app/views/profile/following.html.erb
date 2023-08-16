@@ -1,6 +1,6 @@
-<h2>Following by <%= @user.full_name %></h2>
+<h2>Following by <%= @user.first_name %></h2>
 <ul>
   <% @following.each do |followee| %>
-    <li><%= followee.full_name %></li>
+    <li><%= followee.first_name %></li>
   <% end %>
 </ul>

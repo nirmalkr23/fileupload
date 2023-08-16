@@ -5,8 +5,8 @@ Rails.application.routes.draw do
   get 'p/:id', to: 'profile#show', as: :profile_show
   post 'profile/follow', to: 'profile#follow'
   delete 'profile/unfollow', to: 'profile#unfollow'
-  get 'profile/followers', to: 'profile#followers'
-  get 'profile/following', to: 'profile#following'
+  get 'user/:id', to: 'profile#followers', as: :user_followers
+  get 'user/:id', to: 'profile#following', as: :user_following
 
 
   
