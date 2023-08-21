@@ -1,0 +1,36 @@
+<div class="col-xl-4 col-md-6 col-sm-8 col-10" style="margin: auto;">
+    <%= form_with(model: story, multipart: true) do |form| %>
+        <% if story.errors.any? %>
+            <div style="color: red">
+
+            <ul>
+                <% story.errors.each do |error| %>
+                <li><%= error.full_message %></li>
+                <% end %>
+            </ul>
+            </div>
+        <% end %>
+        <h1 class="text-center">New Story</h1>
+        
+        <%= form.hidden_field :user_id, value: current_user.id %>
+        
+        <div>
+            <%= form.label :title, style: "display: block" %>
+            <%= form.text_field :title, class: "form-control" %>
+        </div>
+
+        <div>
+            <%= form.label :description, style: "display: block" %>
+            <%= form.text_area :description, class: "form-control" %>
+        </div>
+
+        <div>
+            <%= form.label :media, style: "display: block" %>
+            <%= form.file_field :Media, class: "form-control", accept: 'image/*, video/*' %>
+        </div>
+        <br>
+        <div>
+            <%= form.submit class: "btn btn-primary col-12" %>
+        </div>
+    <% end %>
+</div>

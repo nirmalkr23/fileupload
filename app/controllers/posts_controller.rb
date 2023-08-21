@@ -10,12 +10,30 @@ class PostsController < ApplicationController
   def test
   end
 
+  def get_story
+    @stories=Story.all
+  end
+
   def get_post_of_follower
     if current_user
-      # following_users=current_user.following_users
-      # @following_ids = current_user.following_users.map(&:follower_id)
-      # @following_posts = Post.where(user_id: @following_ids).order(created_at: :desc)
-      @following_posts = Post.all
+      @stories=Story.all
+      @following_posts = Post.all # or however you're getting the posts
+
+        # Sorting logic
+        case params[:sort_by]
+        when 'name_asc'
+          @following_posts = @following_posts.joins(:user).order('users.first_name ASC')
+        when 'name_desc'
+          @following_posts = @following_posts.joins(:user).order('users.first_name DESC')
+        when 'latest'
+          @following_posts = @following_posts.order('created_at DESC')
+        when 'oldest'
+          @following_posts = @following_posts.order('created_at ASC')
+        end
+        
+        # ... any other logic ...
+
+        @following_posts = @following_posts.paginate(page: params[:page], per_page: 8) # or whatever per_page you set
     else
       redirect_to new_user_session_path
     end
@@ -40,7 +58,21 @@ class PostsController < ApplicationController
   # GET /posts/1/edit
   def edit
   end
+  # def new_story
+  #   @story = Post.new
+  # end
 
+  # def create_story
+  #   @story = Post.new(story_params)
+  #   @story.is_story = true
+  #   @story.user = current_user
+
+  #   if @story.save
+  #     redirect_to posts_path, notice: 'Story was successfully uploaded.'
+  #   else
+  #     render :new_story
+  #   end
+  # end
   # POST /posts or /posts.json
   def create
     @post = Post.new(post_params)
@@ -91,5 +123,10 @@ class PostsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def post_params
       params.require(:post).permit(:title, :description,  :video, :user_id)
+    end
+
+    private
+    def story_params
+      params.require(:post).permit(:title, :description, :media)
     end
 end

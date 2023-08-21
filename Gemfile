@@ -15,6 +15,19 @@ gem "sqlite3", "~> 1.4"
 #devise
 gem "devise"
 
+#schedular job gem
+gem 'whenever', require: false
+
+
+#pagination
+gem "will_paginate"
+
+#bootstrap pagination
+gem "will_paginate-bootstrap"
+
+#hotwire 
+gem "hotwire-rails"
+
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
 

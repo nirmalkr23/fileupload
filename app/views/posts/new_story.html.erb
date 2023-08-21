@@ -1,0 +1,44 @@
+<!-- app/views/posts/new_story.html.erb -->
+<%= form_with(model: @story, url: create_story_posts_path, multipart: true) do |form| %>
+  <%= form.text_field :title, placeholder: 'Title' %>
+  <%= form.text_area :description, placeholder: 'Description' %>
+  <%= form.file_field :media, accept: 'image/*, video/*', multiple: true %>
+  <%= form.submit 'Upload Story' %>
+<% end %>
+<div class="col-xl-4 col-md-6 col-sm-8 col-10" style="margin: auto;">
+  <%= form_with(model: @post, url: create_story_posts_path) do |form| %>
+    <% if @post.errors.any? %>
+      <div style="color: red">
+        <ul>
+          <% @post.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <h1>New story</h1>
+    <div>
+      <%= form.label :title, style: "display: block" %>
+      <%= form.text_field :title, class: "form-control" %>
+    </div>
+
+    <div>
+      <%= form.label :description, style: "display: block" %>
+      <%= form.text_field :description, class: "form-control" %>
+    </div>
+
+    <div>
+      <%= form.label :image, style: "display: block" %>
+      <%= form.file_field :image, class: "form-control", accept: 'image/*' %>
+    </div>
+
+    <div class="field form-group">
+      <%= form.number_field :user_id, id: :post_user_id, class: "form-control", value: current_user.id, type: :hidden %>
+    </div>
+
+    <div>
+      <%= form.submit class: "btn btn-primary col-12" %>
+    </div>
+  <% end %>
+</div>
+

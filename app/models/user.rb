@@ -24,6 +24,7 @@ class User < ApplicationRecord
 
         has_many :posts, dependent: :destroy
         has_many :comments, dependent: :destroy
+        has_many :stories, dependent: :destroy
         
         # relationship config
         has_many :followed_users,

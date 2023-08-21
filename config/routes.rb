@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'stories/new'
+  get 'stories/create'
   get 'search', to: 'search#index', as: :search
   
 
@@ -24,12 +26,14 @@ Rails.application.routes.draw do
     get :mypost
     get :test
   end
+
 end
 
   resources :likes, only: [:create, :destroy]
+  resources :stories, only: [:new, :create, :show, :destroy]
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
+  
   # Defines the root path route ("/")
   # root "articles#index"
   root 'posts#get_post_of_follower'

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_14_115208) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_21_064323) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -74,6 +74,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_14_115208) do
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.integer "view_count"
+    t.boolean "is_story"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -82,6 +83,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_14_115208) do
     t.integer "followee_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "stories", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.datetime "expires_at"
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "Media"
+    t.index ["user_id"], name: "index_stories_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -108,4 +120,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_14_115208) do
   add_foreign_key "friendships", "users"
   add_foreign_key "likes", "posts"
   add_foreign_key "likes", "users"
+  add_foreign_key "stories", "users"
 end
