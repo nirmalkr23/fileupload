@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'chat/index'
   
   get 'stories/new'
   get 'stories/create'
@@ -29,7 +30,7 @@ Rails.application.routes.draw do
     
     }
 
-  get 'user/:id', to: 'users#show', as: 'user'
+  get 'u/:id', to: 'users#show', as: :user
   resources :posts do
   member do
     post :update_view_count
@@ -38,7 +39,7 @@ Rails.application.routes.draw do
   end
 
 end
-
+  resources :chat
   resources :likes, only: [:create, :destroy]
   resources :stories, only: [:new, :create, :show, :destroy]
   #resources :messages, only: [:index, :show, :new, :create]
