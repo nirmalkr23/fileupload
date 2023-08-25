@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  
   get 'stories/new'
   get 'stories/create'
   get 'search', to: 'search#index', as: :search
@@ -13,13 +14,22 @@ Rails.application.routes.draw do
 
   
   get 'users_list/index'
-  
+
+  # room routes
+  resources :rooms do
+    resources :messages
+  end
+
+  # comment routes
   resources :comments
+
+   # devise user routes
   devise_for :users, controllers: { 
     omniauth_callbacks: 'users/omniauth_callbacks',
     
     }
 
+  get 'user/:id', to: 'users#show', as: 'user'
   resources :posts do
   member do
     post :update_view_count
@@ -31,6 +41,8 @@ end
 
   resources :likes, only: [:create, :destroy]
   resources :stories, only: [:new, :create, :show, :destroy]
+  #resources :messages, only: [:index, :show, :new, :create]
+
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   

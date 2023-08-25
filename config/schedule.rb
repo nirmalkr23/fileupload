@@ -1,4 +1,6 @@
 # config/schedule.rb
+set :path, '/home/nirmalramani/RAILS/fileupload'
+set :environment, :development
 
 set :output, './log/cron.log'
 

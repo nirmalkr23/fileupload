@@ -1,0 +1,37 @@
+<div class="container mt-5">
+      <div class="row" id="<%= dom_id story %>">
+        <div class="col-12">
+          <div class="card">
+            <%= link_to "#{story.user.first_name}", profile_show_path(id: story.user_id), class: "btn btn-info mb-2" %>
+
+              <div class="video-container" style="overflow: hidden">
+              
+                <video controls width="100%">
+                  <source
+                    src="<%= url_for(story.Media) %>" type="<%= story.Media.content_type %>"
+                    type="video/mp4"
+                  />
+                  Your browser does not support the video tag.
+                </video>
+            </div>
+
+            <!-- Post content -->
+            <div class="card-body">
+              <h5 class="card-title"><%= story.title %></h5>
+              
+              <p class="card-text mt-3">
+                <%= story.description %>
+              </p>
+             
+              <% if current_user == @story.user %>
+        <%= button_to "Delete", @story, method: :delete,  class: "btn btn-danger btn-sm" %>
+    <% end %>
+
+        
+            </div>
+           
+
+          </div>
+        </div>
+      </div>
+    </div>

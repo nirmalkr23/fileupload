@@ -1,8 +1,6 @@
-<h1><%= @story.title %></h1>
-<p><%= @story.description %></p>
-<%= image_tag @story.Media if @story.Media.attached? %>
-<!-- Delete link/button for the owner of the story -->
-    <% if current_user == @story.user %>
-        <%= button_to "Delete", @story, method: :delete,  class: "btn btn-danger btn-sm" %>
-    <% end %>
+<p style="color: green"><%= notice %></p>
+ <div class="row"></div>
+<div class="col-6" style="margin: auto; margin-top: 30px; margin-bottom: 30px;">
+<%= render @story %>
+
 
