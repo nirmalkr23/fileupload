@@ -1,1 +1,19 @@
-<div> <%= link_to user.first_name, user %> <%=  user.status %></div>
+<% if @private_room && @private_room.participant?(@private_room, user) %>
+  <% isActive = 'active' %>
+<% else %>
+  <% isActive = '' %>
+<% end %>
+<li class="list-group-item d-flex align-items-center justify-content-between user_list_item <%= isActive %>">
+  <div class="icon-container">
+    <% if user&.profile_img.present? %>
+    <%= link_to image_tag(user.profile_img, class: 'chat_pfp'), user %>
+  <% else %>
+    <%= link_to image_tag("https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp", class: 'chat_pfp'), user %>
+  <% end %>
+    <%= turbo_stream_from "user_status" %>
+    <div>
+      <%= render "users/status", user: user %>
+    </div>
+  </div>
+  <%= link_to user.email, user, class:'ms-2 me-auto username', data: {turbo: "false"}%>
+</li>

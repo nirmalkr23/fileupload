@@ -1,53 +1,46 @@
-/* CSS for the messages container */
-/* .body {
-    overflow: hidden;
+
+.chat_pfp {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
 }
-#msg-form {
-    width: 100%;
-    height: 56px;
-    padding: 10px;
+.user_list_item {
+  height: 55px;
+  background-color: #343a40 !important;
 }
-#single_room {
-    height: calc(100vh-150px);
-    overflow-x: hidden;
-    overflow-y: scroll;
+.room_list_item {
+  height: 55px;
+  background-color: #343a40 !important;
+  color: #fff;
 }
-#messages {
-    height: calc(100vh-150px);
-    overflow-x: hidden;
-    overflow-y: scroll;
+
+.name {
+  margin-top: 15px;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
 }
-#room_container {
-    height: 100vh;
-    margin-right: 0px !important;
+.time {
+  padding-top: 0px;
+  margin-top: 0px;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
 }
-#side_panel {
-    height: 100vh;
-    margin-right: 0px !important;
-    overflow-x: hidden;
-    overflow-y: scroll;
-    margin-bottom: 55px;
+.icon-container {
+  width: 50px;
+  height: 50px;
+  position: relative;
 }
-#chatroom_container {
-    height: 100vh;
-    margin-right: 0px !important;
-    overflow-x: hidden;
-    overflow-y: scroll;
+.status-circle {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: grey;
+  border: 2px solid white;
+  bottom: 10px;
+  right: 10px;
+  position: absolute;
 }
-#msg-content {
-    width: 80%;
-    margin-right: 5px;
-}
-#message-box {
-    word-wrap: break-word;
-    width: fit-content;
-    max-width: 40%;
-    padding: 5px;
-    border-radius: 10px;
-    margin-bottom: 10px;
-    background-color: #555555;
-    padding: 10px;
-} */
 /* CSS for the messages container */
 .centered-container {
     display: flex;
@@ -425,24 +418,5 @@
         font-size: 13px;
         font-weight: 500;
     }
-    .time {
-        padding-top: 0px;
-        margin-top: 0px;
-        margin-bottom: 0px;
-    }
-    .icon-container {
-        width: 10px;
-        height: 10px;
-        position: relative;
-    }
-    .status-circle {
-        width: 15px;
-        height: 15px;
-        border-radius: 50%;
-        background-color: grey;
-        border: 2px solid white;
-        bottom: 10px;
-        right: 10px;
-        position: absolute;
-    }
+
 

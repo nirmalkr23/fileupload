@@ -9,25 +9,6 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   # POST /resource/sign_in
-  def create
-    # Your authentication logic here
-
-    if user_authenticated_successfully
-      sign_in(user) # Assuming you are using Devise or similar authentication gem
-      user.update(online_status: true) # Set the user's status to "online"
-      redirect_to root_path
-    else
-      flash[:alert] = 'Invalid login credentials'
-      render :new
-    end
-  end
-
-  def destroy
-    # Your logout logic here
-    user.update(online_status: false) # Set the user's status to "offline" when they log out
-    sign_out(user) # Assuming you are using Devise or similar authentication gem
-    redirect_to root_path
-  end
   # def create
   #   super
   # end

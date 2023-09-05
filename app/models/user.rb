@@ -23,7 +23,7 @@ class User < ApplicationRecord
         validates :first_name, :last_name, presence: true
         scope :all_except, ->(user) { where.not(id: user) }
         after_create_commit { broadcast_append_to "users" }
-        has_many :messages
+        has_many :messages,dependent: :destroy
 
         has_many :posts, dependent: :destroy
         has_many :comments, dependent: :destroy
@@ -46,4 +46,25 @@ class User < ApplicationRecord
 
         has_many :likes,dependent: :destroy
         has_many :notifications, as: :recipient, dependent: :destroy
+
+        enum status: %i[offline away online]
+        
+        after_update_commit { broadcast_update }
+
+        def broadcast_update
+          broadcast_replace_to 'user_status', partial: 'users/status', user: self
+        end
+
+        def status_to_css
+          case status
+          when 'online'
+            'bg-success'
+          when 'away'
+            'bg-warning'
+          when 'offline'
+            'bg-dark'
+          else
+            'bg-dark'
+          end
+        end
 end
