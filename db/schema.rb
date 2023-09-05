@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_25_072640) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_04_033528) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -77,6 +77,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_25_072640) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.string "recipient_type", null: false
+    t.integer "recipient_id", null: false
+    t.string "type", null: false
+    t.json "params"
+    t.datetime "read_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["read_at"], name: "index_notifications_on_read_at"
+    t.index ["recipient_type", "recipient_id"], name: "index_notifications_on_recipient"
+  end
+
   create_table "participants", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "room_id", null: false
@@ -136,6 +148,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_25_072640) do
     t.string "last_name"
     t.text "bio"
     t.string "profile_img"
+    t.integer "status", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

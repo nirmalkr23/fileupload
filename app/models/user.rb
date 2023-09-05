@@ -45,4 +45,5 @@ class User < ApplicationRecord
         has_many :followers, through: :following_users,dependent: :destroy
 
         has_many :likes,dependent: :destroy
+        has_many :notifications, as: :recipient, dependent: :destroy
 end

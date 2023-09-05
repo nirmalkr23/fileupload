@@ -1,0 +1,30 @@
+<% if current_user %>
+  <div class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <span class="badge rounded-pill bg-danger">
+        
+        <i class="bi bi-suit-heart-fill"></i> <!-- Added "text-danger" class to make it red -->
+        <%= @unread.count >= 9 ? "9+" : @unread.count %>
+      </span>
+    </a>
+    <div class="dropdown-menu px-3" aria-labelledby="navbarDropdown">
+      <% if @unread.any? %>
+        <% @unread.each do |notification| %>
+          <%= render 'layouts/notification', notification: notification %>
+        <% end %>
+      <% else %>
+        <a class="dropdown-item" href="#">No notifications yet.</a>
+      <% end %>
+
+      <% if @read.any? && @unread.any? %>
+        <div class="dropdown-divider"></div>
+      <% end %>
+
+      <% if @read.any? %>
+        <% @read.each do |notification| %>
+          <%= render 'layouts/notification', notification: notification %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

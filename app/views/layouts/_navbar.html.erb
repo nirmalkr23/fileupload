@@ -1,9 +1,9 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     
-    <%= link_to 'First Project', root_path , class:"navbar-brand" %>
+    <%= link_to 'Home', root_path , class:"navbar-brand" %>
 
-    <%# <a class="navbar-brand" href="#">Friend App</a> %>
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -15,42 +15,33 @@
 
           <li class="nav-item">
               <%= link_to "Add Post", new_post_path,class:"nav-link" %>
-            <%# <a class="nav-link" href="#">Link</a> %>
+
           </li>
 
           <li class="nav-item">
-            <%#= button_to "Sign Out", destroy_user_session_path, method: :delete, class: "btn btn-secondary" %>
+
           </li>
 
           <li class="nav-item">
               <%= link_to "Profile", profile_show_path(id: current_user.id),class:"nav-link" %>
-            <%# <a class="nav-link" href="#">Link</a> %>
           </li>
 
           <li class="nav-item">
-            <!-- Add the following line to link to the list of users -->
+
             <%= link_to "Chat-Box", rooms_path(id: current_user.id),class:"nav-link" %>
           </li>
-
-          <li class="nav-item">
-            <!-- Add the following line to link to the pending friend list-->
-            <%= link_to "template", chat_index_path,class:"nav-link" %>
-          </li>
-
         <% else %>
           <li class="nav-item">
             <%= button_to "Sign In", new_user_session_path, method: :post, class: "btn btn-secondary" %>
           </li>
         <% end %>
-
-        
-
-        
       </ul>
+      <%= render 'layouts/notifications' %>
+
       <% if user_signed_in? %>
         <form class="d-flex" action="<%= search_path %>" method="get">
           <input class="form-control me-2 custom-search-input" type="search" name="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-custom" type="submit">Search</button>
+          <button class="btn btn-custom text-white" type="submit ">Search</button>
         </form>
       <% end %>  
 

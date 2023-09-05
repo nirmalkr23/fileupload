@@ -1,5 +1,6 @@
 class StoriesController < ApplicationController
   before_action :set_story, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
   def show
     @story = Story.find(params[:id])
   end

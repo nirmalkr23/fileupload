@@ -15,6 +15,9 @@ gem "sqlite3", "~> 1.4"
 #devise
 gem "devise"
 
+#notification
+gem "noticed"
+
 #schedular job gem
 gem 'whenever', require: false
 

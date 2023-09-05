@@ -25,7 +25,7 @@
                                                 <p>Create a story</p>
                                             </div>
                                         </a>
-                                    </div>
+                                    </div>                                   
                                     <% @stories.each do |story| %>
                                         <a href="<%= story_path(story) %>">
                                             <div class="single-story">
@@ -36,7 +36,7 @@
                                                 </div>
                                             </div>
                                         </a>
-                                    <% end %>
+                                    <% end %>                                  
                                     <div class="single-story">
                                         <img src="https://bootdey.com/img/Content/avatar/avatar3.png" class="single-story-bg">
                                         <div class="story-author">
@@ -99,13 +99,22 @@
 
 <br>
       <!-- Sorting UI -->
-    <div class="sort-by mb-3">
-      Sort by :
-      <%= link_to "Name (Ascending)", { sort_by: 'name_asc' }, class: 'btn btn-light' %> |
-      <%= link_to "Name (Descending)", { sort_by: 'name_desc' }, class: 'btn btn-light' %> |
-      <%= link_to "Latest", { sort_by: 'latest' }, class: 'btn btn-light' %>|
-      <%= link_to "Oldest", { sort_by: 'oldest' }, class: 'btn btn-light' %>
-    </div>
+        <div class="sort-by mb-3">
+            Sort by:
+            <div class="dropdown d-inline">
+                <button class="btn btn-light dropdown-toggle" type="button" id="sortDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Select Option
+                </button>
+                <div class="dropdown-menu" aria-labelledby="sortDropdown">
+                    <%= link_to "Name (Ascending)", { sort_by: 'name_asc' }, class: 'dropdown-item' %>
+                    <%= link_to "Name (Descending)", { sort_by: 'name_desc' }, class: 'dropdown-item' %>
+                    <%= link_to "Latest", { sort_by: 'latest' }, class: 'dropdown-item' %>
+                    <%= link_to "Oldest", { sort_by: 'oldest' }, class: 'dropdown-item' %>
+                </div>
+            </div>
+        </div>
+
+    <!-- Sorting UI -->
         <% @following_posts.each_slice(4) do |posts_slice| %>
             <div class="row ">
                 <% posts_slice.each do |post| %>

@@ -3,7 +3,7 @@ class Room < ApplicationRecord
   scope :public_rooms, -> { where(is_private: false) }
   after_create_commit {broadcast_append_to "rooms"}
 
-  has_many :messages
+  has_many :messages,dependent: :destroy
 
   has_many :participants, dependent: :destroy
 after_create_commit { broadcast_if_public }
@@ -19,4 +19,6 @@ def self.create_private_room(users, room_name)
   end
   single_room
 end
+has_noticed_notifications model_name: 'Notification'
+has_many :notifications, through: :user, dependent: :destroy
 end

@@ -19,11 +19,14 @@ Rails.application.routes.draw do
   # room routes
   resources :rooms do
     resources :messages
+    member do
+      delete :destroy_room
+    end
   end
 
   # comment routes
   resources :comments
-
+  resources :notifications
    # devise user routes
   devise_for :users, controllers: { 
     omniauth_callbacks: 'users/omniauth_callbacks',
