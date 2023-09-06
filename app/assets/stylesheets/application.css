@@ -1,14 +1,26 @@
 
+/* Adjust the CSS for your chat page */
+.message-box {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 10px;
+    border-radius: 25px;
+    background-color: #82ccdd;
+    padding: 10px;
+    position: relative;
+  }
 .chat_pfp {
   width: 40px;
   height: 40px;
   border-radius: 50%;
   margin-right: 10px;
 }
+
 .user_list_item {
   height: 55px;
   background-color: #343a40 !important;
 }
+
 .room_list_item {
   height: 55px;
   background-color: #343a40 !important;
@@ -20,17 +32,20 @@
   padding-bottom: 0px;
   margin-bottom: 0px;
 }
+
 .time {
   padding-top: 0px;
   margin-top: 0px;
   padding-bottom: 0px;
   margin-bottom: 0px;
 }
+
 .icon-container {
   width: 50px;
   height: 50px;
   position: relative;
 }
+
 .status-circle {
   width: 15px;
   height: 15px;
@@ -40,6 +55,26 @@
   bottom: 10px;
   right: 10px;
   position: absolute;
+}
+
+/* Adjust the message form and message display within the room container */
+#room_container {
+  position: relative;
+}
+
+#messages {
+  max-height: calc(100% - 50px); /* Adjust the maximum height of messages */
+  overflow-y: auto;
+}
+
+#msg_form {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px;
+  background-color: #fff; /* Set the background color of the form */
+  border-top: 1px solid #ccc; /* Add a separator line */
 }
 /* CSS for the messages container */
 .centered-container {

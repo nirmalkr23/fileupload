@@ -2,10 +2,10 @@
 <div id="appearance_channel"></div>
 
 <div class="conatiner p-5 ">
-<div id="chatroom_container" class="row bg-dark text-light">
-  <div id="side_panel" class="col-md-4 col-sm-4">
-    <li class="list-group-item d-flex align-items-center justify-content-between user_list_item">
-      <div class="icon-container">
+<div id="chatroom_container " class="row bg-dark text-light ">
+  <div id="side_panel" class="col-md-4 col-sm-4 ">
+    <li class="list-group-item d-flex align-items-center justify-content-between user_list_item" style="margin-bottom: 10px; margin-top: 10px;">
+      <div class="icon-container" >
         <% if current_user&.profile_img.present? %>
             <%= link_to image_tag(current_user.profile_img, class: 'chat_pfp'), current_user %>
         <% else %>
@@ -16,7 +16,7 @@
           <%= render "users/status", user: current_user %>
         </div>
       </div>
-      <div class='ms-2 me-auto username'>
+      <div class="ms-2 me-auto username">
         <%= current_user.email%>
       </div>
     </li>
@@ -33,12 +33,21 @@
     </div>
   </div>
   <div id="room_container "
-    class="col-md-8 col-sm-8 bg-dark text-light border border-danger" >
+    class="col-md-8 col-sm-8 bg-dark text-light " style="border-left: 10px solid white;">
     <% if @single_room %>
       <div id="single_room">
-        <h4 class="text-center border border-danger"> <%= @user&.email || @single_room.name %> </h4>
+        
+        <div class="text-center" style="margin-top: 10px;">
+          <% if @user&.profile_img.present? %>
+            <%= image_tag(@user.profile_img, class: 'chat_pfp')%>
+        <% else %>
+            <%= image_tag("https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp", class: 'chat_pfp') %>
+        <% end %>
+          <%= @user&.email || @single_room.name %>
+        </div>
+        
         <%= turbo_stream_from @single_room %>
-        <div id="messages" data-controller="scroll">
+        <div id="messages" data-controller="scroll" style="max-height: 400px; overflow-y: auto;">
           <%= render @messages %>
         </div>
         <%= render 'layouts/new_messages_form' %>
